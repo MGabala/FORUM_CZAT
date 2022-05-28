@@ -14,5 +14,6 @@ namespace FORUM_CZAT.Entities
         public string Content { get; set; }
         [Required]
         public DateTime CreationTime { get; set; }
+        
     }
 }
