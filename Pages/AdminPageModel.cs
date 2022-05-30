@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿
 
 namespace FORUM_CZAT.Pages
 {
+    [Authorize(Roles = "Admins")]
     public class AdminPageModel : PageModel
     {
     }
