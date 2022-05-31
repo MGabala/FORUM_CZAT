@@ -5,8 +5,12 @@ namespace FORUM_CZAT.Pages.Categories
 {
     public class MathematicModel : PageModel
     {
-        public void OnGet()
+        public async Task OnGetAsync()
         {
+        }
+        public async Task OnPostAsync()
+        {
+
         }
     }
 }

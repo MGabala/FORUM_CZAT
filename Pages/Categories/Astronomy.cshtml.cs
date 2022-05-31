@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FORUM_CZAT.Pages.Categories
 {
-    public class ProgrammingModel : PageModel
+    public class AstronomyModel : PageModel
     {
         public async Task OnGetAsync()
         {
