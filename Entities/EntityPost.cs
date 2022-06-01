@@ -6,14 +6,11 @@ namespace FORUM_CZAT.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
         public string Title { get; set; }
-        [Required]
+        public string Description { get; set; }
         public string Author { get; set; }
-        [Required]
-        public string Content { get; set; }
-        [Required]
+        public string Category { get; set; }
         public DateTime CreationTime { get; set; }
-        
+
     }
 }

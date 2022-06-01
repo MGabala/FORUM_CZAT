@@ -8,7 +8,7 @@ namespace FORUM_CZAT.Pages.Categories
         public async Task OnGetAsync()
         {
         }
-        public async Task OnPostAsync(string title, string description, string author)
+        public async Task OnPostAsync(string title, string description, string author, string category = "SciFi")
         {
 
         }
