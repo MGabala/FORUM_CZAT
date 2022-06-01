@@ -8,7 +8,7 @@ namespace FORUM_CZAT.Pages.Categories
         public async Task OnGetAsync()
         {
         }
-        public async Task OnPostAsync()
+        public async Task OnPostAsync(string title, string description, string author)
         {
 
         }
