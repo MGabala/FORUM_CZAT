@@ -1,5 +1,7 @@
 
 
+using FORUM_CZAT.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +17,7 @@ builder.Services.Configure<IdentityOptions>(options => {
     options.Password.RequireUppercase = false;
     options.Password.RequireDigit = false;
 });
+builder.Services.AddScoped<IPostBeforeApprovalRepository,PostBeforeApprovalRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
