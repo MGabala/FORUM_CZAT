@@ -4,8 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<Context>(db_config => db_config.UseSqlite(builder.Configuration["ConnectionStrings:DB"]));
-builder.Services.AddDbContext<Context>(db_config => db_config.UseSqlite(builder.Configuration["ConnectionStrings:IdentityDB"]));
+builder.Services.AddDbContext<ForumContext>(db_config => db_config.UseSqlite(builder.Configuration["ConnectionStrings:DB"]));
+builder.Services.AddDbContext<ForumContext>(db_config => db_config.UseSqlite(builder.Configuration["ConnectionStrings:IdentityDB"]));
 builder.Services.AddDbContext<IdentityContext>(db_config => db_config.UseSqlite(builder.Configuration["ConnectionStrings:IdentityDB"]));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
 builder.Services.Configure<IdentityOptions>(options => {

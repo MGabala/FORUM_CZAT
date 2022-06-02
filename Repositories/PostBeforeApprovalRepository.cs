@@ -2,8 +2,8 @@
 {
     public class PostBeforeApprovalRepository : IPostBeforeApprovalRepository
     {
-        private Context _context;
-        public PostBeforeApprovalRepository(Context context)
+        private ForumContext _context;
+        public PostBeforeApprovalRepository(ForumContext context)
         {
             _context = context;
         }

@@ -2,10 +2,10 @@
 
 namespace FORUM_CZAT.Db
 {
-    public class Context : DbContext
+    public class ForumContext : DbContext
     {
         public DbSet<ModelPost> PostsBeforeApproval { get; set; } = null!;
-        public Context(DbContextOptions<Context> options) : base(options)
+        public ForumContext(DbContextOptions<ForumContext> options) : base(options)
         {
 
         }
