@@ -15,7 +15,7 @@ namespace FORUM_CZAT.Pages.Categories
         public async Task OnPostAsync(string title, string description, string author)
         {
             string category = "Astronomy";
-            var query = $"INSERT INTO [Posts] (Title, Description, Author, Category, CreationTime) VALUES ('{title}','{description}','{author}','{category}','2022-05-05')";
+            var query = $"INSERT INTO [Posts] (Title, Description, Author, Category, CreationTime) VALUES ('{title}','{description}','{author}','{category}','{DateTime.Now}')";
             using (var con = new SqliteConnection(_connectionString))
             using (var cmd = new SqliteCommand())
             {

@@ -10,7 +10,7 @@ namespace FORUM_CZAT.Pages.Categories
         }
         public async Task OnPostAsync(string title, string description, string author)
         {
-            private readonly string category = "CryptoCurrencies";
+          string category = "CryptoCurrencies";
         }
     }
 }
