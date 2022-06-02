@@ -1,3 +1,4 @@
+using FORUM_CZAT.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 
@@ -5,13 +6,17 @@ namespace FORUM_CZAT.Pages.Categories
 {
     public class AstronomyModel : PageModel
     {
+       
         private readonly string _connectionString = string.Empty;
+        public IEnumerable<ModelPost> PostBeforeApproval { get; set; }
+
         public AstronomyModel(IConfiguration configuration)
         {
             _connectionString = configuration["ConnectionStrings:DB"];
         }
         public async Task OnGetAsync()
         {
+           
         }
         public async Task<IActionResult> OnPostAsync(string title, string description, string author)
         {
