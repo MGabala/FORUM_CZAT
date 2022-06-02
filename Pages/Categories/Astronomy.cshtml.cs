@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 
 namespace FORUM_CZAT.Pages.Categories
@@ -12,7 +13,7 @@ namespace FORUM_CZAT.Pages.Categories
         public async Task OnGetAsync()
         {
         }
-        public async Task OnPostAsync(string title, string description, string author)
+        public async Task<IActionResult> OnPostAsync(string title, string description, string author)
         {
             string category = "Astronomy";
             var query = $"INSERT INTO [Posts] (Title, Description, Author, Category, CreationTime) VALUES ('{title}','{description}','{author}','{category}','{DateTime.Now}')";
@@ -24,6 +25,7 @@ namespace FORUM_CZAT.Pages.Categories
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
             }
+            return RedirectToPage("/AfterPostInformation");
         }
     }
 }
