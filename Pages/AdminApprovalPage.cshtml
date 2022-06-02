@@ -2,11 +2,36 @@
 @model FORUM_CZAT.Pages.AdminApprovalPageModel
 @{
 }
-<h1>Test</h1>
-<table class="table">
+<h1><center>Admin approval page</center></h1>
 
-    @foreach(var item in Model.Posts)
-    {
-        <tr>@item.Title</tr>
-    }
-</table>
+@foreach(var post in Model.Posts)
+{
+<center><div class="col-md-5">
+<div class="card">
+                <div class="card-header">
+                    <b><center>New Post</center></b>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b>Id:</b> @post.Id<br />
+                        <b>Title:</b> @post.Title<br />
+                        <b>Description:</b> @post.Description<br />
+                        <b>Nick:</b> @post.Author<br />
+                        <b>Category:</b>@post.Category<br />
+                        <b>Creation Time:</b> @post.CreationTime</p>
+                   <form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="py-2">
+              <a class="btn btn-success">Approve</a>
+                    <a class="btn btn-danger">Reject</a>
+    </div>
+</form> 
+<hr />
+</div>
+</div>
+</div>
+</center>
+}
+
+
