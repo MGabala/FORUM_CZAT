@@ -1,6 +1,6 @@
 ﻿namespace FORUM_CZAT.Models
 {
-    public class ModelPost
+    public class AfterApprovalPost
     {
         public int Id { get; set; }
         public string Title { get; set; }

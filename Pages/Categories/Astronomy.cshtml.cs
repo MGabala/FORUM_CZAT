@@ -8,7 +8,7 @@ namespace FORUM_CZAT.Pages.Categories
     {
        
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<ModelPost> PostBeforeApproval { get; set; }
+        public IEnumerable<BeforeApprovalPost> PostBeforeApproval { get; set; }
 
         public AstronomyModel(IConfiguration configuration)
         {

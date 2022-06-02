@@ -2,6 +2,6 @@
 {
     public interface IPostBeforeApprovalRepository
     {
-        public Task<IEnumerable<ModelPost>> GetAllPostsBeforeApprovalAsync();
+        public Task<IEnumerable<BeforeApprovalPost>> GetAllPostsBeforeApprovalAsync();
     }
 }

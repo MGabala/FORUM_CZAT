@@ -8,7 +8,7 @@
             _context = context;
         }
 
-        public async Task<IEnumerable<ModelPost>> GetAllPostsBeforeApprovalAsync()
+        public async Task<IEnumerable<BeforeApprovalPost>> GetAllPostsBeforeApprovalAsync()
         {
             return await _context.PostsBeforeApproval.OrderBy(x => x.Id).ToListAsync();
         }
