@@ -1,6 +1,7 @@
 using FORUM_CZAT.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.Sqlite;
 
 namespace FORUM_CZAT.Pages
 {
@@ -19,8 +20,33 @@ namespace FORUM_CZAT.Pages
         {
             Posts = await _repository.GetAllPostsBeforeApprovalAsync();
         }
-       public async Task OnPostAsync()
+       public async Task<IActionResult> OnPostAsync(int id, int iddel)
         {
+            if (id > 0) 
+            {
+                var query = $"insert into PostsAfterApproval select * from PostsBeforeApproval where id = {id}";
+                using (var con = new SqliteConnection(_connectionString))
+                using (var cmd = new SqliteCommand())
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            if (iddel > 0)
+            {
+                var query = $"DELETE FROM [PostsBeforeApproval] WHERE id = {iddel}";
+                using (var con = new SqliteConnection(_connectionString))
+                using (var cmd = new SqliteCommand())
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            return RedirectToPage("/AdminApprovalPage");
 
         }
     }

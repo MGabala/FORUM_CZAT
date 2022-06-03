@@ -23,8 +23,8 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="py-2">
-              <a class="btn btn-success">Approve</a>
-                    <a class="btn btn-danger">Reject</a>
+             <button class="btn btn-success" asp-route-id="@post.Id"> Approve </button>
+                     <button class="btn btn-danger" asp-route-iddel="@post.Id"> Reject </button>
     </div>
 </form> 
 <hr />
