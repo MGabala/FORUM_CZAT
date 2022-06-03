@@ -6,17 +6,18 @@ namespace FORUM_CZAT.Pages.Categories
 {
     public class AstronomyModel : PageModel
     {
-       
+        private IPostRepository _repository;
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<BeforeApprovalPost> PostBeforeApproval { get; set; }
+        public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; }
 
-        public AstronomyModel(IConfiguration configuration)
+        public AstronomyModel(IConfiguration configuration, IPostRepository repository)
         {
             _connectionString = configuration["ConnectionStrings:DB"];
+            _repository = repository;
         }
         public async Task OnGetAsync()
         {
-           
+            AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForAstronomyAsync();
         }
         public async Task<IActionResult> OnPostAsync(string title, string description, string author)
         {

@@ -7,10 +7,10 @@ namespace FORUM_CZAT.Pages
 {
     public class AdminApprovalPageModel : PageModel
     {
-        private IPostBeforeApprovalRepository _repository;
+        private IPostRepository _repository;
         private readonly string _connectionString = string.Empty;
         public IEnumerable<BeforeApprovalPost> Posts { get; set; }
-        public AdminApprovalPageModel(IConfiguration configuration, IPostBeforeApprovalRepository repository)
+        public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository)
         {
             _connectionString = configuration["ConnectionStrings:DB"];
             _repository = repository;
@@ -25,12 +25,21 @@ namespace FORUM_CZAT.Pages
             if (id > 0) 
             {
                 var query = $"insert into PostsAfterApproval select * from PostsBeforeApproval where id = {id}";
+                var querydel = $"DELETE FROM [PostsBeforeApproval] WHERE id = {id}";
                 using (var con = new SqliteConnection(_connectionString))
                 using (var cmd = new SqliteCommand())
                 {
                     cmd.Connection = con;
                     con.Open();
                     cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                }
+                using (var con = new SqliteConnection(_connectionString))
+                using (var cmd = new SqliteCommand())
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = querydel;
                     cmd.ExecuteNonQuery();
                 }
             }

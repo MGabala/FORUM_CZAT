@@ -17,7 +17,7 @@ builder.Services.Configure<IdentityOptions>(options => {
     options.Password.RequireUppercase = false;
     options.Password.RequireDigit = false;
 });
-builder.Services.AddScoped<IPostBeforeApprovalRepository,PostBeforeApprovalRepository>();
+builder.Services.AddScoped<IPostRepository,PostRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
