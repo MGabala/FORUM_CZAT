@@ -16,5 +16,18 @@
         {
             return await _context.PostsAfterApproval.OrderBy(x => x.Id).Where(x=>x.Category == "Astronomy").ToListAsync();
         }
+
+        public void AddPost(string title, string description, string author, string category, DateTime creationtime)
+        {
+           _context.PostsBeforeApproval.Add(new BeforeApprovalPost
+           {
+               Title = title,
+               Description = description,
+               Author=author,
+               Category=category,
+               CreationTime=creationtime
+           });
+            _context.SaveChanges();
+        }
     }
 }

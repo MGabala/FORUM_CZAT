@@ -21,16 +21,33 @@ namespace FORUM_CZAT.Pages.Categories
         }
         public async Task<IActionResult> OnPostAsync(string title, string description, string author)
         {
+            
             string category = "Astronomy";
-            var query = $"INSERT INTO [PostsBeforeApproval] (Title, Description, Author, Category, CreationTime) VALUES ('{title}','{description}','{author}','{category}','{DateTime.Now}')";
-            using (var con = new SqliteConnection(_connectionString))
-            using (var cmd = new SqliteCommand())
-            {
-                cmd.Connection = con;
-                con.Open();
-                cmd.CommandText = query;
-                cmd.ExecuteNonQuery();
-            }
+            _repository.AddPost(title,description,author, category, DateTime.Now);
+    //        //var query = $"INSERT INTO [PostsBeforeApproval] (Title, Description, Author, Category, CreationTime) VALUES ('{title}','{description}','{author}','{category}','{DateTime.Now}')";
+
+    //        using (var con = new SqliteConnection(_connectionString))
+    //        using (var cmd = new SqliteCommand())
+    //        {
+    //            cmd.CommandText =
+    //@"
+    //INSERT INTO [PostsBeforeApproval] 
+    //(Title, Description, Author, Category, CreationTime) 
+    //VALUES 
+    //($title, $description, $author, $category, $creationtime)
+    //";
+    //            cmd.Parameters.AddWithValue("$title", title);
+    //            cmd.Parameters.AddWithValue("$description", description);
+    //            cmd.Parameters.AddWithValue("$author", author);
+    //            cmd.Parameters.AddWithValue("$category", category);
+    //            cmd.Parameters.AddWithValue("$creationtime", DateTime.Now.ToString());
+
+
+    //            cmd.Connection = con;
+    //            con.Open();
+    //           // cmd.CommandText = query;
+    //            cmd.ExecuteNonQuery();
+    //        }
             return RedirectToPage("/AfterPostInformation");
         }
     }
