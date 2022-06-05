@@ -12,9 +12,19 @@
         {
             return await _context.PostsBeforeApproval.OrderBy(x => x.Id).ToListAsync();
         }
+        public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalLast5Async()
+        {
+            return await _context.PostsAfterApproval.OrderByDescending(x => x.CreationTime).Take(5).ToListAsync();
+
+        }
         public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalForAstronomyAsync()
         {
             return await _context.PostsAfterApproval.OrderBy(x => x.Id).Where(x=>x.Category == "Astronomy").ToListAsync();
+        }
+        public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalForCryptoCurrenciesAsync()
+        {
+            return await _context.PostsAfterApproval.OrderBy(x => x.Id).Where(x => x.Category == "CryptoCurrencies").ToListAsync();
+
         }
 
         public void AddPost(string title, string description, string author, string category, DateTime creationtime)
@@ -29,5 +39,7 @@
            });
             _context.SaveChanges();
         }
+
+
     }
 }

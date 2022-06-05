@@ -17,9 +17,17 @@ namespace FORUM_CZAT.Pages.Categories
         }
         public async Task OnGetAsync(string category)
         {
-         if(category == "Astronomy")
+            if (category == null)
+            {
+                AfterApprovalPost = await _repository.GetAllPostsAfterApprovalLast5Async();
+            }
+            else if(category == "Astronomy")
             {
                 AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForAstronomyAsync();
+            }
+            else if (category == "CryptoCurrencies")
+            {
+                AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForCryptoCurrenciesAsync();
             }
         }
     }
