@@ -19,10 +19,10 @@ namespace FORUM_CZAT.Pages.Categories
         {
             AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForAstronomyAsync();
         }
-        public async Task<IActionResult> OnPostAsync(string title, string description, string author)
+        public async Task<IActionResult> OnPostAsync(string title, string description,string category, string author)
         {
             
-            string category = "Astronomy";
+            //string category = "Astronomy";
             _repository.AddPost(title,description,author, category, DateTime.Now);
     //        //var query = $"INSERT INTO [PostsBeforeApproval] (Title, Description, Author, Category, CreationTime) VALUES ('{title}','{description}','{author}','{category}','{DateTime.Now}')";
 
