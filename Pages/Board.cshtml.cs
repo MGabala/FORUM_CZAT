@@ -21,9 +21,16 @@ namespace FORUM_CZAT.Pages.Categories
         }
         public async Task<IActionResult> OnPostAsync(string title, string description,string category, string author)
         {
-            
+            if(category=="Select category")
+            {
+                return RedirectToPage("/Error");
+            }
+            else
+            {
+                _repository.AddPost(title, description, author, category, DateTime.Now);
+            }
             //string category = "Astronomy";
-            _repository.AddPost(title,description,author, category, DateTime.Now);
+           
     //        //var query = $"INSERT INTO [PostsBeforeApproval] (Title, Description, Author, Category, CreationTime) VALUES ('{title}','{description}','{author}','{category}','{DateTime.Now}')";
 
     //        using (var con = new SqliteConnection(_connectionString))
