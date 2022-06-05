@@ -29,6 +29,14 @@ namespace FORUM_CZAT.Pages.Categories
             {
                 AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForCryptoCurrenciesAsync();
             }
+            else if (category == "Programming")
+            {
+                AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForProgrammingAsync();
+            }
+            else if (category == "Science")
+            {
+                AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForScienceAsync();
+            }
         }
     }
 }
