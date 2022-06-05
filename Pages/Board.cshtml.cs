@@ -15,9 +15,12 @@ namespace FORUM_CZAT.Pages.Categories
             _connectionString = configuration["ConnectionStrings:DB"];
             _repository = repository;
         }
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string category)
         {
-         
+         if(category == "Astronomy")
+            {
+                AfterApprovalPost = await _repository.GetAllPostsAfterApprovalForAstronomyAsync();
+            }
         }
     }
 }
