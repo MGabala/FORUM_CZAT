@@ -26,27 +26,6 @@
         public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalLast5Async()
         {
             return await _context.PostsAfterApproval.OrderByDescending(x => x.CreationTime).Take(5).ToListAsync();
-
         }
-        public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalForAstronomyAsync()
-        {
-            return await _context.PostsAfterApproval.OrderBy(x => x.Id).Where(x=>x.Category == "Astronomy").ToListAsync();
-        }
-        public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalForCryptoCurrenciesAsync()
-        {
-            return await _context.PostsAfterApproval.OrderBy(x => x.Id).Where(x => x.Category == "CryptoCurrencies").ToListAsync();
-        }
-        public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalForProgrammingAsync()
-        {
-            return await _context.PostsAfterApproval.OrderBy(x => x.Id).Where(x => x.Category == "Programming").ToListAsync();
-        }
-        public async Task<IEnumerable<AfterApprovalPost>> GetAllPostsAfterApprovalForScienceAsync()
-        {
-            return await _context.PostsAfterApproval.OrderBy(x => x.Id).Where(x => x.Category == "Science").ToListAsync();
-
-        }
-
-
-
     }
 }
