@@ -27,5 +27,10 @@
         {
             return await _context.PostsAfterApproval.OrderByDescending(x => x.CreationTime).Take(5).ToListAsync();
         }
+
+        public Task AddComent(string description, string author, DateTime creationtime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
