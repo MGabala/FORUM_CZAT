@@ -33,5 +33,9 @@ namespace FORUM_CZAT.Pages.Categories
                     .ToListAsync();
             }
         }
+        public async Task OnPostAsync(int id)
+        {
+
+        }
     }
 }

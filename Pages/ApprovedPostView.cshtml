@@ -1,24 +1,25 @@
 ﻿@foreach(var post in Model.AfterApprovalPost)
 {
-<center><div class="col-md">
+<div class="col-md-12">
 <div class="card">
                 <div class="card-header">
                    <center> <b>Post</b></center>
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                       
+                        <b>Id:</b> @post.Id <br />
                         <b>Title:</b> @post.Title<br />
                         <b>Description:</b> @post.Description<br />
                         <b>Nick:</b> @post.Author<br />
                         <b>Category:</b> @post.Category<br />
                         <b>Creation Time:</b> @post.CreationTime</p>
-                   <form method="post">
-   
-</form> 
+
 <hr />
+<form method="post">
+  <button class="btn btn-success" asp-route-id="@post.Id"> Add comment </button>
+</form>
 </div>
 </div>
 </div>
-</center><br />
+
 }
