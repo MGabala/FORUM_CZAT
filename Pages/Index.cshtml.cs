@@ -9,7 +9,7 @@ namespace FORUM_CZAT.Pages
         private readonly ILogger<IndexModel> _logger;
         private IPostRepository _repository;
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; }
+        public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; } = null!;
         public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration, IPostRepository repository)
         {
             _logger = logger;

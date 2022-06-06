@@ -8,7 +8,7 @@ namespace FORUM_CZAT.Pages.Categories
     {
         private IPostRepository _repository;
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; }
+        public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; } = null!;
         private ForumContext _context;
 
 
