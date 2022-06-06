@@ -14,8 +14,12 @@
                         <b>Category:</b> @post.Category<br />
                         <b>Creation Time:</b> @post.CreationTime</p>
 <hr />
+   <div class="form-group">
+        <input name="comment" class="form-control" placeholder="Type comment here.." /><hr />
+    </div>
 <form method="post">
   <button class="btn btn-success" asp-route-id="@post.Id"> Add comment </button>
+  <button class="btn btn-primary">Show comments</button>
 </form>
 </div>
 </div>
