@@ -7,7 +7,7 @@
         {
             _context = context;
         }
-        public void AddPost(string title, string description, string author, string category, DateTime creationtime)
+        public async Task AddPost(string title, string description, string author, string category, DateTime creationtime)
         {
             _context.PostsBeforeApproval.Add(new BeforeApprovalPost
             {
