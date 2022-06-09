@@ -38,12 +38,15 @@
 </form>         
                 @if (Model.Comments == null)
                 {
-                    
-                }else{
+                    <b>You must load comments.</b>
+                }
+                else
+                {
                 @foreach(var comment in Model.Comments.Where(x=>x.PostId == @post.Id))
                 {
                     <b>Comment: </b>@comment.CommentDescription <b>Author: </b>@comment.CommentAuthor <b>Creation Time: </b>@comment.CreationTime<br />
-                }}
+                }
+                }
             </div>
 </div>
 </div>
