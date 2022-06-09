@@ -22,34 +22,16 @@
   <button class="btn btn-success" asp-route-postid="@post.Id" asp-route-comment="comment" asp-route-author="author"> Add comment </button>
 </div>
 </form>
-<!-- Modal -->
 <form method="get">
     <div class="py-2">
-        <button type="button" name="Id" value="@post.Id" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">Show comments</button>
         <button type="submit" name="Id"  value="@post.Id" class="btn btn-primary">Load</button>
     </div>
-</form> 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-                                @foreach(var comment in Model.Comments)
-                                {
-                                    @comment.Id<hr /> @comment.CommentDescription<hr />@comment.CommentAuthor
-                                }
-                            </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+</form>
+                @foreach(var comment in Model.Comments)
+                {
+                    <b>@comment.CommentDescription</b>
+                }
+            </div>
 </div>
 </div>
-</div>
-</div>
-
 }

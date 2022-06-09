@@ -21,6 +21,7 @@ namespace FORUM_CZAT.Pages.Categories
         }
         public async Task OnGetAsync(string category, int id)
         {
+            
             Comments = _context.Comments.Where(x => x.PostId == id);
 
             if (category == null)
@@ -34,11 +35,12 @@ namespace FORUM_CZAT.Pages.Categories
                     .OrderByDescending(x => x.CreationTime)
                     .ToListAsync();
             }
+           
         }
         public async Task<IActionResult> OnPostAsync(int postid, string comment, string author)
         {
             await _repository.AddComent(postid, comment, author, DateTime.Now);
-            return RedirectToPage("Index");
+            return RedirectToPage("Board");
         }
     }
 }
