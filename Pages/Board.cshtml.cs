@@ -9,6 +9,7 @@ namespace FORUM_CZAT.Pages.Categories
         private IPostRepository _repository;
         private readonly string _connectionString = string.Empty;
         public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; } = null!;
+        public IEnumerable<Comment> Comments { get; set; } = null!;
         private ForumContext _context;
 
 
@@ -18,8 +19,9 @@ namespace FORUM_CZAT.Pages.Categories
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public async Task OnGetAsync(string category)
+        public async Task OnGetAsync(string category, int id)
         {
+            Comments = _context.Comments.Where(x => x.PostId == id);
 
             if (category == null)
             {
