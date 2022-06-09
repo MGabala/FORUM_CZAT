@@ -33,13 +33,17 @@
 </form>
 <form method="get">
     <div class="py-2">
-        <button type="submit" name="Id"  value="@post.Id" class="btn btn-primary">Load</button>
+        <button type="submit" name="Id"  value="@post.Id" class="btn btn-primary" asp-page-handler="Test" >Load</button>
     </div>
-</form>
+</form>         
+                @if (Model.Comments == null)
+                {
+                    
+                }else{
                 @foreach(var comment in Model.Comments.Where(x=>x.PostId == @post.Id))
                 {
                     <b>Comment: </b>@comment.CommentDescription <b>Author: </b>@comment.CommentAuthor <b>Creation Time: </b>@comment.CreationTime<br />
-                }
+                }}
             </div>
 </div>
 </div>

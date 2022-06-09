@@ -21,11 +21,8 @@ namespace FORUM_CZAT.Pages.Categories
         }
         public async Task OnGetAsync(string category, int id)
         {
-            if (id > 0)
-            {
-                Comments = _context.Comments.Where(x => x.PostId == id);
-            }
-
+            if (id > 0) { Comments = _context.Comments.Where(x => x.PostId == id); }
+             
             if (category == null)
             {
                 AfterApprovalPost = await _repository.GetAllPostsAfterApprovalLast5Async();
