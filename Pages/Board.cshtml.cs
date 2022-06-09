@@ -33,9 +33,10 @@ namespace FORUM_CZAT.Pages.Categories
                     .ToListAsync();
             }
         }
-        public async Task OnPostAsync(int id, string commentdescription)
+        public async Task<IActionResult> OnPostAsync(int postid, string comment, string author)
         {
-
+            await _repository.AddComent(postid, comment, author, DateTime.Now);
+            return RedirectToPage("Index");
         }
     }
 }

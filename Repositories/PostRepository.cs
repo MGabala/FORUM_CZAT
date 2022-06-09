@@ -28,9 +28,17 @@
             return await _context.PostsAfterApproval.OrderByDescending(x => x.CreationTime).Take(5).ToListAsync();
         }
 
-        public Task AddComent(string description, string author, DateTime creationtime)
+        public async Task AddComent(int postid,string description, string author, DateTime creationtime)
         {
-            throw new NotImplementedException();
+            _context.Comments.Add(new Comment
+            {
+                PostId = postid,
+                CommentDescription = description,
+                CommentAuthor = author,
+                CreationTime = creationtime
+                
+            });
+            _context.SaveChanges();
         }
     }
 }

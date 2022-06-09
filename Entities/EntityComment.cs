@@ -6,9 +6,8 @@
         public int Id { get; set; }
         public string CommentDescription { get; set; } = string.Empty;
         public string CommentAuthor { get; set; } = string.Empty;
-        [ForeignKey("PostId")]
-        public AfterApprovalPost? AfterApprovalPost { get; set; }
         public int PostId { get; set; }
-      
+        public DateTime CreationTime { get; set; }
+
     }
 }
