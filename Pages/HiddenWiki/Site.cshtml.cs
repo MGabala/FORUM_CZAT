@@ -5,8 +5,13 @@ namespace FORUM_CZAT.Pages.HiddenWiki
 {
     public class SiteModel : PageModel
     {
-        public void OnGet()
+        public async Task OnGetAsync()
+            {
+
+            }
+        public async Task<IActionResult> OnPostAsync()
         {
+            return Page();
         }
     }
 }
