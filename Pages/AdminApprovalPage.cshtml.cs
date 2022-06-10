@@ -3,22 +3,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sqlite;
 
-namespace FORUM_CZAT.Pages.Forum
+namespace FORUM_CZAT.Pages
 {
     public class AdminApprovalPageModel : PageModel
     {
         private IPostRepository _repository;
+        private IURLRepository _urlrepository;
         private readonly string _connectionString = string.Empty;
         public IEnumerable<BeforeApprovalPost> Posts { get; set; }
-        public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository)
+        public IEnumerable<HiddenWikiEntity> Urls { get; set; }
+        public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository, IURLRepository urlrepository)
         {
             _connectionString = configuration["ConnectionStrings:DB"];
             _repository = repository;
+            _urlrepository = urlrepository;
         }
 
        public async Task OnGetAsync()
         {
             Posts = await _repository.GetAllPostsBeforeApprovalAsync();
+            Urls = await _urlrepository.GetAllUnverifiedUrls();
         }
        public async Task<IActionResult> OnPostAsync(int id, int iddel)
         {

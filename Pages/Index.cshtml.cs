@@ -20,7 +20,7 @@ namespace FORUM_CZAT.Pages
         public async Task<IActionResult> OnPostAsync(string title, string description, string category, string author)
         {
             _repository.AddPost(title, description, author, category, DateTime.Now);
-            return RedirectToPage("/AfterPostInformation");
+            return RedirectToPage("/Forum/AfterPostInformation");
         }
     }
 }
