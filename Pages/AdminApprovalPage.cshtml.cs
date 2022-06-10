@@ -70,7 +70,7 @@ namespace FORUM_CZAT.Pages
         public async Task<IActionResult> OnPostURL(int id)
         {
             _Url.Id = id;
-            _urlrepository.CheckURL(_Url);
+           await _urlrepository.CheckURL(_Url);
             return RedirectToPage("/AdminApprovalPage");
         }
     }

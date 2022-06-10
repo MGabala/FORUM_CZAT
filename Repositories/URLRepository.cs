@@ -30,9 +30,9 @@
 
         public async Task CheckURL(HiddenWikiEntity hiddenWikiEntity)
         {
-            var urlforapprove = _context.Urls.SingleOrDefault(x => x.Id == hiddenWikiEntity.Id);
+            var urlforapprove =  _context.Urls.SingleOrDefault(x => x.Id == hiddenWikiEntity.Id);
             urlforapprove.IsVerified = true;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
