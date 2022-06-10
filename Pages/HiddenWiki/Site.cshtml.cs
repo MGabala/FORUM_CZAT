@@ -17,7 +17,7 @@ namespace FORUM_CZAT.Pages.HiddenWiki
             }
         public async Task<IActionResult> OnPostAsync(string url, bool isverified, string description)
         {
-            _repository.AddURL(url, isverified, description, DateTime.Now);
+           await _repository.AddURL(url, isverified, description, DateTime.Now);
             return RedirectToPage("/HiddenWiki/AfterUrlInformation");
         }
     }
