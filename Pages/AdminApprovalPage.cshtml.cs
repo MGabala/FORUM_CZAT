@@ -5,7 +5,7 @@ using Microsoft.Data.Sqlite;
 
 namespace FORUM_CZAT.Pages
 {
-    public class AdminApprovalPageModel : PageModel
+    public class AdminApprovalPageModel : AdminPageModel
     {
         private IPostRepository _repository;
         private IURLRepository _urlrepository;

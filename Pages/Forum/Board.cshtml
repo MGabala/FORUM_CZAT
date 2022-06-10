@@ -28,6 +28,7 @@
   <button class="btn btn-success" asp-route-postid="@post.Id" asp-route-comment="comment" asp-route-author="author"> Add comment </button>
 </div>
 </form>
+<!-- Modal -->
       <form method="get">
     <div class="py-2">                                   
         <button type="button" data-bs-target="#Modal_@post.Id" name="Id" value="@post.Id" class="btn btn-primary"  data-bs-toggle="modal">Show comments</button>
@@ -54,10 +55,9 @@
     </div>
   </div>
 </div>
+<!-- Modal -->
+</div>
+</div>
 </div>
 
-            </div>
-    </div>
-
 }
-
