@@ -24,7 +24,7 @@ namespace FORUM_CZAT.Pages
             Posts = await _repository.GetAllPostsBeforeApprovalAsync();
             Urls = await _urlrepository.GetAllUnverifiedUrls();
         }
-       public async Task<IActionResult> OnPostAsync(int id, int iddel)
+       public async Task<IActionResult> OnPostPosty(int id, int iddel)
         {
             if (id > 0) 
             {
@@ -61,6 +61,10 @@ namespace FORUM_CZAT.Pages
             }
             return RedirectToPage("/AdminApprovalPage");
 
+        }
+        public async Task<IActionResult> OnPostURL(int id, int iddel)
+        {
+            return Page();
         }
     }
 }

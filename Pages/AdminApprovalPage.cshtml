@@ -23,7 +23,7 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="py-2">
-             <button class="btn btn-success" asp-route-id="@post.Id"> Approve </button>
+             <button class="btn btn-success" asp-route-id="@post.Id" asp-page-handler="Posty"> Approve </button>
              <button class="btn btn-danger" asp-route-iddel="@post.Id"> Reject </button>
     </div>
 </form> 
@@ -43,15 +43,15 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        <b>url.Id</b><br>
-                        <b>url.WWWW</b><br>
-                        <b>url.Description</b>
+                        <b>@url.Id</b><br>
+                        <b>@url.WWW</b><br>
+                        <b>@url.Description</b>
                     </p>
                    <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="py-2">
-             <button class="btn btn-success" asp-route-id="@url.Id"> Approve </button>
+             <button class="btn btn-success" asp-route-id="@url.Id" asp-page-handler="URL"> Approve </button>
              <button class="btn btn-danger" asp-route-iddel="@url.Id"> Reject </button>
     </div>
 </form> 
