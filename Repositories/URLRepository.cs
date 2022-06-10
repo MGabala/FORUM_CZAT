@@ -7,9 +7,9 @@
         {
             _context = context;
         }
-        public Task<HiddenWiki> GetAllVerifiedUrls()
+        public async Task<IEnumerable<HiddenWikiEntity>> GetAllVerifiedUrls()
         {
-            throw new NotImplementedException();
+            return await _context.Urls.OrderBy(x => x.Id).ToListAsync();
         }
     }
 }

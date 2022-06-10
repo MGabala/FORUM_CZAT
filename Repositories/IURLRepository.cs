@@ -2,6 +2,6 @@
 {
     public interface IURLRepository
     {
-        public Task<HiddenWiki> GetAllVerifiedUrls();
+        public Task<IEnumerable<HiddenWikiEntity>> GetAllVerifiedUrls();
     }
 }
