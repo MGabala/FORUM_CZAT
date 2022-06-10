@@ -29,13 +29,13 @@
 </form> 
 <hr />
 </div>
-</div>
+</div><br>
 </div>
 }</center>
 <center>
     @foreach(var url in Model.Urls)
 {
-    <div class="leftside">
+  
     <div class="col-md-6">
 <div class="card">
                 <div class="card-header">
@@ -43,9 +43,10 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        <b>@url.Id</b><br>
-                        <b>@url.WWW</b><br>
-                        <b>@url.Description</b>
+                        <b>Id: </b>@url.Id<br>
+                        <b>Url: </b>@url.WWW<br>
+                        <b>Desc: </b>@url.Description<br>
+                        <b>Verified: </b>@url.IsVerified
                     </p>
                    <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -57,6 +58,6 @@
 </form> 
 <hr />
 </div>
+</div><br>
 </div>
-</div></div>}
-</center>
+}</center>

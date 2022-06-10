@@ -13,7 +13,7 @@ namespace FORUM_CZAT.Pages.HiddenWiki
 
         public async Task OnGetAsync()
             {
-            Url = await _repository.GetAllUnverifiedUrls();
+            Url = await _repository.GetAllVerifiedUrls();
             }
         public async Task<IActionResult> OnPostAsync(string url, bool isverified, string description)
         {

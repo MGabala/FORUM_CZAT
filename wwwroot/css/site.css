@@ -80,3 +80,10 @@ footer {
 textarea.form-control {
     min-height: 150px;
 }
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+}

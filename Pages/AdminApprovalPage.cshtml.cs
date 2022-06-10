@@ -9,17 +9,22 @@ namespace FORUM_CZAT.Pages
     {
         private IPostRepository _repository;
         private IURLRepository _urlrepository;
+        private ForumContext _context;
         private readonly string _connectionString = string.Empty;
         public IEnumerable<BeforeApprovalPost> Posts { get; set; }
+      
+        [BindProperty]
+        public HiddenWikiEntity _Url { get; set; }
         public IEnumerable<HiddenWikiEntity> Urls { get; set; }
-        public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository, IURLRepository urlrepository)
+        public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository, IURLRepository urlrepository, ForumContext context)
         {
             _connectionString = configuration["ConnectionStrings:DB"];
             _repository = repository;
             _urlrepository = urlrepository;
+            _context = context;
         }
 
-       public async Task OnGetAsync()
+        public async Task OnGetAsync()
         {
             Posts = await _repository.GetAllPostsBeforeApprovalAsync();
             Urls = await _urlrepository.GetAllUnverifiedUrls();
@@ -62,9 +67,11 @@ namespace FORUM_CZAT.Pages
             return RedirectToPage("/AdminApprovalPage");
 
         }
-        public async Task<IActionResult> OnPostURL(int id, int iddel)
+        public async Task<IActionResult> OnPostURL(int id)
         {
-            return Page();
+            _Url.Id = id;
+            _urlrepository.CheckURL(_Url);
+            return RedirectToPage("/AdminApprovalPage");
         }
     }
 }

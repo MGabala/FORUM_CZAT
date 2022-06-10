@@ -27,5 +27,12 @@
             });
             _context.SaveChanges();
         }
+
+        public async Task CheckURL(HiddenWikiEntity hiddenWikiEntity)
+        {
+            var urlforapprove = _context.Urls.SingleOrDefault(x => x.Id == hiddenWikiEntity.Id);
+            urlforapprove.IsVerified = true;
+            _context.SaveChanges();
+        }
     }
 }
