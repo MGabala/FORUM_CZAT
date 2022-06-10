@@ -18,16 +18,16 @@
 
         public async Task AddURL(string url, bool isverified, string description, DateTime creationtime)
         {
-            _context.Urls.Add(new HiddenWikiEntity
+           await _context.Urls.AddAsync(new HiddenWikiEntity
             {
                 WWW = url,
                 IsVerified = isverified,
                 Description = description,
                 CreationTime = creationtime,
             });
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
-
+#pragma warning disable CS8602
         public async Task CheckURL(HiddenWikiEntity hiddenWikiEntity)
         {
             var urlforapprove =  _context.Urls.SingleOrDefault(x => x.Id == hiddenWikiEntity.Id);
@@ -36,3 +36,4 @@
         }
     }
 }
+#pragma warning restore CS8602

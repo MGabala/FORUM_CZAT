@@ -9,7 +9,7 @@
         }
         public async Task AddPost(string title, string description, string author, string category, DateTime creationtime)
         {
-            _context.PostsBeforeApproval.Add(new BeforeApprovalPost
+            await _context.PostsBeforeApproval.AddAsync(new BeforeApprovalPost
             {
                 Title = title,
                 Description = description,
@@ -17,7 +17,7 @@
                 Category = category,
                 CreationTime = creationtime
             });
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
         public async Task<IEnumerable<BeforeApprovalPost>> GetAllPostsBeforeApprovalAsync()
         {
@@ -30,7 +30,7 @@
 
         public async Task AddComent(int postid,string description, string author, DateTime creationtime)
         {
-            _context.Comments.Add(new Comment
+            await _context.Comments.AddAsync(new Comment
             {
                 PostId = postid,
                 CommentDescription = description,
@@ -38,7 +38,7 @@
                 CreationTime = creationtime
                 
             });
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

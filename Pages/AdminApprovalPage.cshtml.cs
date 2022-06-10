@@ -11,11 +11,11 @@ namespace FORUM_CZAT.Pages
         private IURLRepository _urlrepository;
         private ForumContext _context;
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<BeforeApprovalPost> Posts { get; set; }
-      
+        public IEnumerable<BeforeApprovalPost> Posts { get; set; } = null!;
+
         [BindProperty]
-        public HiddenWikiEntity _Url { get; set; }
-        public IEnumerable<HiddenWikiEntity> Urls { get; set; }
+        public HiddenWikiEntity _Url { get; set; } = null!;
+        public IEnumerable<HiddenWikiEntity> Urls { get; set; } = null!;
         public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository, IURLRepository urlrepository, ForumContext context)
         {
             _connectionString = configuration["ConnectionStrings:DB"];
