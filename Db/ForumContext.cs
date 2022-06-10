@@ -7,6 +7,7 @@ namespace FORUM_CZAT.Db
         public DbSet<AfterApprovalPost> PostsAfterApproval { get; set; } = null!;
         public DbSet<BeforeApprovalPost> PostsBeforeApproval { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
+        public DbSet<HiddenWikiEntity> Urls { get; set; } = null!;
         public ForumContext(DbContextOptions<ForumContext> options) : base(options)
         {
 

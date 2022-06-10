@@ -2,7 +2,7 @@ using FORUM_CZAT.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 
-namespace FORUM_CZAT.Pages.Categories
+namespace FORUM_CZAT.Pages.Forum
 {
     public class BoardModel : PageModel
     {
@@ -21,8 +21,6 @@ namespace FORUM_CZAT.Pages.Categories
         }
         public async Task OnGetAsync(string category, int id)
         {
-            //if (id > 0) { Comments = _context.Comments.Where(x => x.PostId == id); }
-
             Comments = _context.Comments.OrderBy(x => x.Id);
             if (category == null)
             {
@@ -35,7 +33,7 @@ namespace FORUM_CZAT.Pages.Categories
                     .OrderByDescending(x => x.CreationTime)
                     .ToListAsync();
             }
-           
+
         }
         public async Task<IActionResult> OnPostAsync(int postid, string comment, string author)
         {

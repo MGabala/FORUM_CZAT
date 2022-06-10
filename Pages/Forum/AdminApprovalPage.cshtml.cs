@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sqlite;
 
-namespace FORUM_CZAT.Pages
+namespace FORUM_CZAT.Pages.Forum
 {
     public class AdminApprovalPageModel : PageModel
     {
