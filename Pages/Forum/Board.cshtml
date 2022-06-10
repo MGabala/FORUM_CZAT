@@ -28,12 +28,36 @@
   <button class="btn btn-success" asp-route-postid="@post.Id" asp-route-comment="comment" asp-route-author="author"> Add comment </button>
 </div>
 </form>
-@foreach(var comment in Model.Comments.Where(x=>x.PostId == @post.Id)){
-            <div class="alert alert-primary" role="alert">
-                <b>@comment.CommentAuthor</b> said: <b>@comment.CommentDescription</b> at @comment.CreationTime</div>
-            }
+      <form method="get">
+    <div class="py-2">                                   
+        <button type="button" data-bs-target="#Modal_@post.Id" name="Id" value="@post.Id" class="btn btn-primary"  data-bs-toggle="modal">Show comments</button>
+        <button type="submit" name="Id"  value="@post.Id" class="btn btn-primary">Load</button>
+    </div>
+</form> 
+<div class="modal fade" id="Modal_@post.Id" tabindex="-1" aria-hidden="true">
+    
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         @foreach(var comment in Model.Comments.Where(x=>x.PostId == @post.Id))
+                {
+                    <b>Comment: </b>@comment.CommentDescription <b>Author: </b>@comment.CommentAuthor <b>Creation Time: </b>@comment.CreationTime<br />
+                }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
             </div>
     </div>
-</div>
+
 }
 
