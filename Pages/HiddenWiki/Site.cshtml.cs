@@ -1,17 +1,24 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace FORUM_CZAT.Pages.HiddenWiki
 {
     public class SiteModel : PageModel
     {
+        private IURLRepository _repository;
+        public IEnumerable<HiddenWikiEntity> Url { get; set; } = null!;
+        public SiteModel(IURLRepository repository)
+        {
+            _repository = repository;
+        }
+
         public async Task OnGetAsync()
             {
-
+            Url = await _repository.GetAllUnverifiedUrls();
             }
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string url, bool isverified, string description)
         {
-            return Page();
+            _repository.AddURL(url, isverified, description, DateTime.Now);
+            return RedirectToPage("/HiddenWiki/Site");
         }
     }
 }

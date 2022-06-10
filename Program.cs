@@ -18,6 +18,8 @@ builder.Services.Configure<IdentityOptions>(options => {
     options.Password.RequireDigit = false;
 });
 builder.Services.AddScoped<IPostRepository,PostRepository>();
+builder.Services.AddScoped<IURLRepository, URLRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

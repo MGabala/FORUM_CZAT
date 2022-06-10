@@ -9,7 +9,23 @@
         }
         public async Task<IEnumerable<HiddenWikiEntity>> GetAllVerifiedUrls()
         {
-            return await _context.Urls.OrderBy(x => x.Id).ToListAsync();
+            return await _context.Urls.OrderBy(x => x.Id).Where(x=>x.IsVerified==true).ToListAsync();
+        }
+        public async Task<IEnumerable<HiddenWikiEntity>> GetAllUnverifiedUrls()
+        {
+            return await _context.Urls.OrderBy(x => x.Id).Where(x => x.IsVerified == false).ToListAsync();
+        }
+
+        public async Task AddURL(string url, bool isverified, string description, DateTime creationtime)
+        {
+            _context.Urls.Add(new HiddenWikiEntity
+            {
+                WWW = url,
+                IsVerified = isverified,
+                Description = description,
+                CreationTime = creationtime,
+            });
+            _context.SaveChanges();
         }
     }
 }

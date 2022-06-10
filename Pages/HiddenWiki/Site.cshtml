@@ -3,19 +3,28 @@
 @{
 }
 <div class="card">
-     <div class="card-header">
-            <center><b>Add your hidden url and help us build better experience.</b></center>
-      </div>
-      <div class="card-body">
-        <form method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-      <div class="form-group">
-        <input name="title" class="form-control" placeholder="Your url here.." />
-      </div>
-    <div class="py-2">
-        <button type="submit" class="btn btn-primary">Send</button>
+                <div class="card-header">
+                    <center><b>Add your onion site to our wiki and help us make this place better!</b></center>
+                </div>
+                <div class="card-body">
+                   <form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <input name="url" class="form-control" placeholder="URL here.." /><hr />
     </div>
-</form>
+  <div class="form-group">
+    <textarea class="form-control" name="description" rows="3" placeholder="Description here.."></textarea> <hr />
+  </div>
+    <div class="py-2">
+        <button type="submit" class="btn btn-primary">Post</button>
+       
+    </div>
+</form> 
+<hr />
 </div>
 </div>
 
+@foreach(var url in Model.Url){
+  <br><li class="list-group-item list-group-item-success">@url.WWW - @url.Description</li>
+
+}
