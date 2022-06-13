@@ -13,7 +13,7 @@ namespace FORUM_CZAT.Pages
 
         private readonly string _connectionString = string.Empty;
         public IEnumerable<Post> AfterApprovalPost { get; set; } = null!;
-        public List<SelectListItem> Options { get; set; }
+        public List<SelectListItem> Options { get; set; } = null!;
         public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration, IPostRepository repository, ForumContext context)
         {
             _logger = logger;
@@ -23,11 +23,11 @@ namespace FORUM_CZAT.Pages
         }
         public async Task OnGetAsync()
         {
-            Options = _context.Categories.Select(x => new SelectListItem
+            Options = await _context.Categories.Select(x => new SelectListItem
             {
                 Value = x.Category,
                 Text = x.Category
-            }).ToList();
+            }).ToListAsync();
         }
         public async Task<IActionResult> OnPostAsync(string title, string description, string category, string author, bool isverified=false)
         {

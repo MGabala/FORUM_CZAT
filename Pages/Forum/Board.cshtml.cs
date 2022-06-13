@@ -12,7 +12,7 @@ namespace FORUM_CZAT.Pages.Forum
         private readonly string _connectionString = string.Empty;
         public IEnumerable<Post> Posts { get; set; } = null!;
         public IEnumerable<Comment> Comments { get; set; } = null!;
-       public List<SelectListItem> Options { get; set; }
+       public List<SelectListItem> Options { get; set; } = null!;
         private ForumContext _context;
 
 

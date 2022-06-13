@@ -35,11 +35,13 @@
             await _context.SaveChangesAsync();
         }
 #pragma warning restore CS8602
+#pragma warning disable CS8634
         public async Task DeleteUrl(int id)
         {
             var url = await _context.Urls.FirstOrDefaultAsync(x => x.Id == id);
             _context.Remove(url);
             await _context.SaveChangesAsync();
         }
+#pragma warning restore CS8634
     }
 }
