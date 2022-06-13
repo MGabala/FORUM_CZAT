@@ -1,23 +1,20 @@
-﻿<div class="card">
+﻿ <div class="card">
                 <div class="card-header">
                     <center><b>Select category and click Load.</b></center>
                 </div>
                 <div class="card-body">
                    <form method="get">
-    <select class="form-select" name="category">
-       <option value="Astronomy">Astronomy</option>
-       <option value="CryptoCurrencies">Crypto Currencies</option>
-       <option value="Programming">Programming</option>
-       <option value="Science">Science</option>
-       <option value="Philosophy">Philosophy</option>
-       <option value="Movies">Movies</option>
-       <option value="Religion">Religion</option>
-       <option value="Sport">Sport</option>
-   </select>
+       <select class="form-select" name="category" asp-items="@Model.Options" ></select>
     <div class="py-2">
         <button type="submit" class="btn btn-primary">Load</button>
     </div>
 </form> 
+<form method="post">
+     <input type="text" class="form-control" placeholder="No category you are interested in? Send us a suggestion..." name="category">
+       <div class="py-2">
+    <button class="btn btn-primary btn-success" type="submit" name="category" asp-page-handler="Category">Send suggestion</button>
+    </div>
+</form>
 <hr />
 </div>
 </div><br />

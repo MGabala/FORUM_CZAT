@@ -14,8 +14,8 @@
     <div class="form-group">
         <input name="author" class="form-control" placeholder="Type your nick here.." /><hr />
     </div>
-   
-    <select class="form-select" name="category">
+          <select class="form-select" name="category" asp-items="@Model.Options" ></select>
+@*    <select class="form-select" name="category">
        <option value="Astronomy">Astronomy</option>
        <option value="CryptoCurrencies">Crypto Currencies</option>
        <option value="Programming">Programming</option>
@@ -24,7 +24,7 @@
        <option value="Movies">Movies</option>
        <option value="Religion">Religion</option>
        <option value="Sport">Sport</option>
-   </select>
+   </select>*@
     <div class="py-2">
         <button type="submit" class="btn btn-primary">Post</button>
        

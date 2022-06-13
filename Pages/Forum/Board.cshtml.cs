@@ -1,6 +1,8 @@
 using FORUM_CZAT.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.Sqlite;
+using System.Linq;
 
 namespace FORUM_CZAT.Pages.Forum
 {
@@ -10,6 +12,7 @@ namespace FORUM_CZAT.Pages.Forum
         private readonly string _connectionString = string.Empty;
         public IEnumerable<Post> Posts { get; set; } = null!;
         public IEnumerable<Comment> Comments { get; set; } = null!;
+       public List<SelectListItem> Options { get; set; }
         private ForumContext _context;
 
 
@@ -21,6 +24,12 @@ namespace FORUM_CZAT.Pages.Forum
         }
         public async Task OnGetAsync(string category, int id)
         {
+            Options = _context.Categories.Where(x=>x.IsVerified==true).Select(x => new SelectListItem
+            {
+                Value = x.Category,
+                Text = x.Category
+            }).ToList();
+
             Comments = _context.Comments.OrderBy(x => x.Id);
             if (category == null)
             {
@@ -38,7 +47,12 @@ namespace FORUM_CZAT.Pages.Forum
         public async Task<IActionResult> OnPostAsync(int postid, string comment, string author)
         {
             await _repository.AddComent(postid, comment, author, DateTime.Now);
-            return RedirectToPage("Board");
+            return RedirectToPage("/Thanks");
+        }
+        public async Task<IActionResult> OnPostCategory(string category, bool isverified)
+        {
+            await _repository.AddCategory(category, isverified);
+            return RedirectToPage("/Thanks");
         }
     }
 }

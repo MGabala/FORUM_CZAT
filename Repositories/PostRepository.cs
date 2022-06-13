@@ -56,6 +56,14 @@
             postforapprove.IsVerified = true;
             await _context.SaveChangesAsync();
         }
+        public async Task CheckCategory(Categories category)
+        {
+            var categoryforapprove = _context.Categories.SingleOrDefault(x => x.Id == category.Id);
+            categoryforapprove.IsVerified = true;
+            await _context.SaveChangesAsync();
+        }
+#pragma warning restore CS8602
+#pragma warning disable CS8634
 
         public async Task DeletePost(int id)
         {
@@ -63,6 +71,27 @@
             _context.Remove(post);
             await _context.SaveChangesAsync();
         }
-#pragma warning restore CS8602
+        public async Task DeleteCategory(int id)
+        {
+            var category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            _context.Remove(category);
+            await _context.SaveChangesAsync();
+        }
+#pragma warning restore CS8634
+        public async Task AddCategory(string category, bool isverified)
+        {
+            await _context.Categories.AddAsync(new Categories
+            {
+                Category = category,
+                IsVerified = isverified
+            });
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Categories>> GetAllUnverifiedCategories()
+        {
+            return await _context.Categories.OrderByDescending(x => x.Id).Where(x => x.IsVerified == false).ToListAsync();
+
+        }
     }
 }

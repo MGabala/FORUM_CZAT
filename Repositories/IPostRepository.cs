@@ -9,5 +9,9 @@
         public Task<IEnumerable<Post>> GetLast5Posts();
         public Task CheckPost(Post post);
         public Task DeletePost(int id);
+        public Task AddCategory(string category, bool isverified);
+        public Task<IEnumerable<Categories>> GetAllUnverifiedCategories();
+        public Task CheckCategory(Categories category);
+        public Task DeleteCategory(int id);
     }
 }

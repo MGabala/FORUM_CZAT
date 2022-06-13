@@ -55,7 +55,35 @@
 
     <div class="py-2">
              <button class="btn btn-success" asp-route-id="@url.Id" asp-page-handler="URL"> Approve </button>
-             <button class="btn btn-danger" asp-route-iddel="@url.Id"> Reject </button>
+             <button class="btn btn-danger" asp-route-iddel="@url.Id" asp-page-handler="URL"> Reject </button>
+    </div>
+</form> 
+<hr />
+</div>
+</div><br>
+</div>
+}</center>
+<center>
+    @foreach(var category in Model.Categories)
+{
+  
+    <div class="col-md-6">
+<div class="card">
+                <div class="card-header">
+                    <center><b>New category</b></center>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b>Id: </b>@category.Id<br>
+                        <b>Url: </b>@category.Category<br>
+                        <b>Verified: </b>@category.IsVerified
+                    </p>
+                   <form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="py-2">
+             <button class="btn btn-success" asp-route-id="@category.Id" asp-page-handler="Categories"> Approve </button>
+             <button class="btn btn-danger" asp-route-iddel="@category.Id"> Reject </button>
     </div>
 </form> 
 <hr />

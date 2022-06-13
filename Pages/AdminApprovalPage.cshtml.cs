@@ -12,12 +12,16 @@ namespace FORUM_CZAT.Pages
         private ForumContext _context;
         private readonly string _connectionString = string.Empty;
         public IEnumerable<Post> Posts { get; set; } = null!;
+        public IEnumerable<HiddenWikiEntity> Urls { get; set; } = null!;
+        public IEnumerable<Categories> Categories { get; set; } = null!;
 
         [BindProperty]
         public HiddenWikiEntity _Url { get; set; } = null!;
         [BindProperty]
         public Post _Post { get; set; } = null!;
-        public IEnumerable<HiddenWikiEntity> Urls { get; set; } = null!;
+        [BindProperty]
+        public Categories _Category{ get; set; } = null!;
+
         public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository, IURLRepository urlrepository, ForumContext context)
         {
             _connectionString = configuration["ConnectionStrings:DB"];
@@ -28,6 +32,7 @@ namespace FORUM_CZAT.Pages
 
         public async Task OnGetAsync()
         {
+            Categories = await _repository.GetAllUnverifiedCategories();
             Posts = await _repository.GetAllUnverifiedPosts();
             Urls = await _urlrepository.GetAllUnverifiedUrls();
         }
@@ -45,11 +50,26 @@ namespace FORUM_CZAT.Pages
             return RedirectToPage("/AdminApprovalPage");
 
         }
-        public async Task<IActionResult> OnPostURL(int id)
+        public async Task<IActionResult> OnPostURL(int id, int iddel)
         {
             _Url.Id = id;
-           await _urlrepository.CheckURL(_Url);
+            if (id > 0)
+            {
+                await _urlrepository.CheckURL(_Url);
+            }
+            if (iddel > 0)
+            {
+                await _urlrepository.DeleteUrl(iddel);
+            }
             return RedirectToPage("/AdminApprovalPage");
         }
+        public async Task<IActionResult> OnPostCategories(int id, int iddel)
+        {
+            _Category.Id = id;
+            _repository.CheckCategory(_Category);
+            return RedirectToPage("/AdminApprovalPage");
+        }
+
     }
+
 }
