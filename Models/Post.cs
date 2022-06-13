@@ -1,6 +1,6 @@
 ﻿namespace FORUM_CZAT.Models
 {
-    public class AfterApprovalPost
+    public class Post
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -8,5 +8,6 @@
         public string Author { get; set; }
         public string Category { get; set; }
         public DateTime CreationTime { get; set; }
+        public bool IsVerified { get; set; }
     }
 }

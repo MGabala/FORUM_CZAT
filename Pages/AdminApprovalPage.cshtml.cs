@@ -11,10 +11,12 @@ namespace FORUM_CZAT.Pages
         private IURLRepository _urlrepository;
         private ForumContext _context;
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<BeforeApprovalPost> Posts { get; set; } = null!;
+        public IEnumerable<Post> Posts { get; set; } = null!;
 
         [BindProperty]
         public HiddenWikiEntity _Url { get; set; } = null!;
+        [BindProperty]
+        public Post _Post { get; set; } = null!;
         public IEnumerable<HiddenWikiEntity> Urls { get; set; } = null!;
         public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository, IURLRepository urlrepository, ForumContext context)
         {
@@ -26,43 +28,19 @@ namespace FORUM_CZAT.Pages
 
         public async Task OnGetAsync()
         {
-            Posts = await _repository.GetAllPostsBeforeApprovalAsync();
+            Posts = await _repository.GetAllUnverifiedPosts();
             Urls = await _urlrepository.GetAllUnverifiedUrls();
         }
        public async Task<IActionResult> OnPostPosty(int id, int iddel)
         {
-            if (id > 0) 
+            _Post.Id = id;
+            if (id > 0)
             {
-                var query = $"insert into PostsAfterApproval select * from PostsBeforeApproval where id = {id}";
-                var querydel = $"DELETE FROM [PostsBeforeApproval] WHERE id = {id}";
-                using (var con = new SqliteConnection(_connectionString))
-                using (var cmd = new SqliteCommand())
-                {
-                    cmd.Connection = con;
-                    con.Open();
-                    cmd.CommandText = query;
-                    cmd.ExecuteNonQuery();
-                }
-                using (var con = new SqliteConnection(_connectionString))
-                using (var cmd = new SqliteCommand())
-                {
-                    cmd.Connection = con;
-                    con.Open();
-                    cmd.CommandText = querydel;
-                    cmd.ExecuteNonQuery();
-                }
+                await _repository.CheckPost(_Post);
             }
             if (iddel > 0)
             {
-                var query = $"DELETE FROM [PostsBeforeApproval] WHERE id = {iddel}";
-                using (var con = new SqliteConnection(_connectionString))
-                using (var cmd = new SqliteCommand())
-                {
-                    cmd.Connection = con;
-                    con.Open();
-                    cmd.CommandText = query;
-                    cmd.ExecuteNonQuery();
-                }
+                await _repository.DeletePost(iddel);
             }
             return RedirectToPage("/AdminApprovalPage");
 

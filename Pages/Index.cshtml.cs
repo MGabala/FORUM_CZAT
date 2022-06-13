@@ -9,7 +9,7 @@ namespace FORUM_CZAT.Pages
         private readonly ILogger<IndexModel> _logger;
         private IPostRepository _repository;
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; } = null!;
+        public IEnumerable<Post> AfterApprovalPost { get; set; } = null!;
         public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration, IPostRepository repository)
         {
             _logger = logger;
@@ -17,9 +17,9 @@ namespace FORUM_CZAT.Pages
             _repository = repository;
         }
 
-        public async Task<IActionResult> OnPostAsync(string title, string description, string category, string author)
+        public async Task<IActionResult> OnPostAsync(string title, string description, string category, string author, bool isverified=false)
         {
-            await _repository.AddPost(title, description, author, category, DateTime.Now);
+            await _repository.AddPost(title, description, author, category, isverified, DateTime.Now);
             return RedirectToPage("/Forum/AfterPostInformation");
         }
     }

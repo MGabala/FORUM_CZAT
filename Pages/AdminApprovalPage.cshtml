@@ -18,13 +18,15 @@
                         <b>Description:</b> @post.Description<br />
                         <b>Nick:</b> @post.Author<br />
                         <b>Category:</b>@post.Category<br />
-                        <b>Creation Time:</b> @post.CreationTime</p>
+                        <b>Creation Time:</b> @post.CreationTime<br>
+                        <b>Verified: </b>@post.IsVerified</p>
+                          
                    <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="py-2">
              <button class="btn btn-success" asp-route-id="@post.Id" asp-page-handler="Posty"> Approve </button>
-             <button class="btn btn-danger" asp-route-iddel="@post.Id"> Reject </button>
+             <button class="btn btn-danger" asp-route-iddel="@post.Id" asp-page-handler="Posty"> Reject </button>
     </div>
 </form> 
 <hr />

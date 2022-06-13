@@ -8,7 +8,7 @@ namespace FORUM_CZAT.Pages.Forum
     {
         private IPostRepository _repository;
         private readonly string _connectionString = string.Empty;
-        public IEnumerable<AfterApprovalPost> AfterApprovalPost { get; set; } = null!;
+        public IEnumerable<Post> Posts { get; set; } = null!;
         public IEnumerable<Comment> Comments { get; set; } = null!;
         private ForumContext _context;
 
@@ -24,12 +24,12 @@ namespace FORUM_CZAT.Pages.Forum
             Comments = _context.Comments.OrderBy(x => x.Id);
             if (category == null)
             {
-                AfterApprovalPost = await _repository.GetAllPostsAfterApprovalLast5Async();
+                Posts = await _repository.GetLast5Posts();
             }
             else
             {
-                AfterApprovalPost = await _context.PostsAfterApproval
-                    .Where(x => x.Category == category)
+                Posts = await _context.Posts
+                    .Where(x => x.Category == category && x.IsVerified == true)
                     .OrderByDescending(x => x.CreationTime)
                     .ToListAsync();
             }

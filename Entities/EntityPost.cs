@@ -11,6 +11,7 @@ namespace FORUM_CZAT.Entities
         public string Author { get; set; }
         public string Category { get; set; }
         public DateTime CreationTime { get; set; }
+        public bool IsVerified { get; set; }
 
     }
 }
