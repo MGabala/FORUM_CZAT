@@ -12,9 +12,9 @@
 
         public async Task AddMedia(Gallery gallery)
         {
-            gallery.ImageFileName = Guid.NewGuid().ToString()+".png";
-            gallery.IsVerified = false;
-            var file = Path.Combine(_environment.ContentRootPath, "wwwroot/gallery", gallery.ImageFileName);
+            gallery.ImageFileName = Guid.NewGuid().ToString()+Path.GetExtension(gallery.Upload.FileName);
+            //gallery.ImageFileName = gallery.Upload.FileName;
+          var file = Path.Combine(_environment.ContentRootPath, "wwwroot/gallery", gallery.ImageFileName);
             using (var fileStream = new FileStream(file, FileMode.Create))
             {
                 await gallery.Upload.CopyToAsync(fileStream);
