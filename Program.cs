@@ -22,6 +22,7 @@ builder.Services.Configure<IdentityOptions>(options => {
 });
 builder.Services.AddScoped<IPostRepository,PostRepository>();
 builder.Services.AddScoped<IURLRepository, URLRepository>();
+builder.Services.AddScoped<IGalleryRepository, GalleryRepository>();
 
 var app = builder.Build();
 

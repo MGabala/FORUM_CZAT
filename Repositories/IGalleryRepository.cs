@@ -4,5 +4,6 @@
     {
         public Task<IEnumerable<Gallery>> GetAllUnverifiedMedia();
         public Task<IEnumerable<Gallery>> GetAllVerifiedMedia();
+        public Task AddMedia(Gallery gallery);
     }
 }

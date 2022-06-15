@@ -2,3 +2,33 @@
 @model FORUM_CZAT.Pages.Gallery.SiteModel
 @{
 }
+<div class="card">
+     <div class="card-header">
+         <center><b>Add Media</b></center>
+      </div>
+<div class="card-body">
+<form method="post" enctype="multipart/form-data">
+ <div class="mb-3">
+     <input asp-for="Media.Upload" class="form-control" />
+ </div>
+ <button class="btn btn-success">Upload</button>
+    </form>
+    </div>
+</div>
+
+<br /><div class="card">
+     <div class="card-header">
+         <center><b>Dark Net gallery</b></center>
+      </div>
+<div class="card-body">
+        @if (Model.GalleryList.Count() == 0)
+        {
+           <center><p class="card-body"><h1>Empty</h1></p></center>
+        }else
+        @foreach(var item in Model.GalleryList)
+        {
+         <a target="_blank" href="~/gallery/@item.ImageFileName">
+      <img src="~/gallery/@item.ImageFileName" width="400" height="400" ></a>
+        }
+    </div><br />
+</div>

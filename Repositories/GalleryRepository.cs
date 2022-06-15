@@ -3,10 +3,27 @@
     public class GalleryRepository : IGalleryRepository
     {
         private ForumContext _context;
-        public GalleryRepository(ForumContext context)
+        private IWebHostEnvironment _environment;
+        public GalleryRepository(ForumContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
+
+        public async Task AddMedia(Gallery gallery)
+        {
+            gallery.ImageFileName = gallery.Upload.FileName;
+            gallery.IsVerified = false;
+            var file = Path.Combine(_environment.ContentRootPath, "wwwroot/gallery", gallery.Upload.FileName);
+            using (var fileStream = new FileStream(file, FileMode.Create))
+            {
+                await gallery.Upload.CopyToAsync(fileStream);
+            }
+            gallery.CreationTime = DateTime.Now;
+            await _context.Gallery.AddAsync(gallery);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Gallery>> GetAllUnverifiedMedia()
         {
             return await _context.Gallery.OrderBy(x=>x.Id).Where(x=>x.IsVerified==false).ToListAsync();
