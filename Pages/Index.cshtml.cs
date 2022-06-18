@@ -34,5 +34,10 @@ namespace FORUM_CZAT.Pages
             await _repository.AddPost(title, description, author, category, isverified, DateTime.Now);
             return RedirectToPage("/Forum/AfterPostInformation");
         }
+        public async Task<IActionResult> OnPostCategory(string category, bool isverified)
+        {
+            await _repository.AddCategory(category, isverified);
+            return RedirectToPage("/Thanks");
+        }
     }
 }

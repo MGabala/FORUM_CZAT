@@ -66,7 +66,14 @@ namespace FORUM_CZAT.Pages
         public async Task<IActionResult> OnPostCategories(int id, int iddel)
         {
             _Category.Id = id;
-            await _repository.CheckCategory(_Category);
+            if (id > 0)
+            {
+                await _repository.CheckCategory(_Category);
+            }
+            if(iddel > 0)
+            {
+                await _repository.DeleteCategory(iddel);
+            }
             return RedirectToPage("/AdminApprovalPage");
         }
 
