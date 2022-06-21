@@ -36,7 +36,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseHsts();
 app.UseRouting();
 
 app.UseAuthentication();
