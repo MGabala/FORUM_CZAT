@@ -31,13 +31,28 @@ namespace FORUM_CZAT.Pages
         }
         public async Task<IActionResult> OnPostAsync(string title, string description, string category, string author, bool isverified=false)
         {
-            await _repository.AddPost(title, description, author, category, isverified, DateTime.Now);
-            return RedirectToPage("/Forum/AfterPostInformation");
+            if (ModelState.IsValid)
+            {
+                await _repository.AddPost(title, description, author, category, isverified, DateTime.Now);
+                return RedirectToPage("/Thanks");
+            }
+           else
+            {
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPostCategory(string category, bool isverified)
         {
-            await _repository.AddCategory(category, isverified);
-            return RedirectToPage("/Thanks");
+            if (ModelState.IsValid)
+            {
+                await _repository.AddCategory(category, isverified);
+                return RedirectToPage("/Thanks");
+            }
+            else
+            {
+                return Page();
+            }
+               
         }
     }
 }

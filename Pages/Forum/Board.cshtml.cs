@@ -46,13 +46,29 @@ namespace FORUM_CZAT.Pages.Forum
         }
         public async Task<IActionResult> OnPostAsync(int postid, string comment, string author)
         {
-            await _repository.AddComent(postid, comment, author, DateTime.Now);
-            return RedirectToPage("/Thanks");
+            if (ModelState.IsValid)
+            {
+                await _repository.AddComent(postid, comment, author, DateTime.Now);
+                return RedirectToPage("/Thanks");
+            }
+            else
+            {
+                return Page();
+            }
+                
         }
         public async Task<IActionResult> OnPostCategory(string category, bool isverified)
         {
-            await _repository.AddCategory(category, isverified);
-            return RedirectToPage("/Thanks");
+            if (ModelState.IsValid)
+            {
+                await _repository.AddCategory(category, isverified);
+                return RedirectToPage("/Thanks");
+            }
+            else
+            {
+                return Page();
+            }
+               
         }
     }
 }
