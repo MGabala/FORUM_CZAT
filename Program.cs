@@ -1,11 +1,13 @@
 
 
+using FORUM_CZAT.Hubs;
 using FORUM_CZAT.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 builder.Services.AddDbContext<ForumContext>(db_config => db_config.UseSqlite(builder.Configuration["ConnectionStrings:DB"]));
 builder.Services.AddDbContext<ForumContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
@@ -37,10 +39,11 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseHsts();
+
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
-
+app.MapHub<ChatHub>("/chatHub");
 app.Run();
