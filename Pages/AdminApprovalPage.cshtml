@@ -91,3 +91,31 @@
 </div><br>
 </div>
 }</center>
+<center>@foreach(var comment in Model.Comments)
+{
+<div class="col-md-6">
+<div class="card">
+                <div class="card-header">
+                    <center><b>New Comment</b></center>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b>Id:</b> @comment.Id<br />
+                        <b>Author:</b> @comment.CommentAuthor<br />
+                        <b>Description:</b> @comment.CommentDescription<br />
+                        <b>Creation Time:</b> @comment.CreationTime<br>
+                        <b>Verified: </b>@comment.IsVerified</p>
+                          
+                   <form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="py-2">
+             <button class="btn btn-success" asp-route-id="@comment.Id" asp-page-handler="Comments"> Approve </button>
+             <button class="btn btn-danger" asp-route-iddel="@comment.Id" asp-page-handler="Comments"> Reject </button>
+    </div>
+</form> 
+<hr />
+</div>
+</div><br>
+</div>
+}</center>

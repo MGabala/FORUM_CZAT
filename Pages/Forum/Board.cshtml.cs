@@ -30,7 +30,7 @@ namespace FORUM_CZAT.Pages.Forum
                 Text = x.Category
             }).ToList();
 
-            Comments = _context.Comments.OrderBy(x => x.Id);
+            Comments = _context.Comments.OrderBy(x => x.Id).Where(x=>x.IsVerified==true);
             if (category == null)
             {
                 Posts = await _repository.GetLast5Posts();
@@ -44,11 +44,11 @@ namespace FORUM_CZAT.Pages.Forum
             }
 
         }
-        public async Task<IActionResult> OnPostAsync(int postid, string comment, string author)
+        public async Task<IActionResult> OnPostAsync(int postid, string comment, string author, bool isverified)
         {
             if (ModelState.IsValid)
             {
-                await _repository.AddComent(postid, comment, author, DateTime.Now);
+                await _repository.AddComent(postid, comment, author, isverified, DateTime.Now);
                 return RedirectToPage("/Thanks");
             }
             else

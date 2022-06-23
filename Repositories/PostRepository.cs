@@ -22,13 +22,14 @@
         }
 
 
-        public async Task AddComent(int postid,string description, string author, DateTime creationtime)
+        public async Task AddComent(int postid,string description, string author, bool isverified, DateTime creationtime)
         {
             await _context.Comments.AddAsync(new Comment
             {
                 PostId = postid,
                 CommentDescription = description,
                 CommentAuthor = author,
+                IsVerified=isverified,
                 CreationTime = creationtime
                 
             });
@@ -92,6 +93,20 @@
         {
             return await _context.Categories.OrderByDescending(x => x.Id).Where(x => x.IsVerified == false).ToListAsync();
 
+        }
+
+        public async Task CheckComment(EntityComment category)
+        {
+            var commentforapprove = _context.Comments.SingleOrDefault(x => x.Id == category.Id);
+            commentforapprove.IsVerified = true;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteComment(int id)
+        {
+            var comment = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
+            _context.Remove(comment);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -14,6 +14,8 @@ namespace FORUM_CZAT.Pages
         public IEnumerable<Post> Posts { get; set; } = null!;
         public IEnumerable<HiddenWikiEntity> Urls { get; set; } = null!;
         public IEnumerable<Categories> Categories { get; set; } = null!;
+        public IEnumerable<Comment> Comments { get; set; } = null!;
+
 
         [BindProperty]
         public HiddenWikiEntity _Url { get; set; } = null!;
@@ -21,6 +23,8 @@ namespace FORUM_CZAT.Pages
         public Post _Post { get; set; } = null!;
         [BindProperty]
         public Categories _Category{ get; set; } = null!;
+        [BindProperty]
+        public EntityComment _Comments { get; set; } = null!;
 
         public AdminApprovalPageModel(IConfiguration configuration, IPostRepository repository, IURLRepository urlrepository, ForumContext context)
         {
@@ -35,6 +39,7 @@ namespace FORUM_CZAT.Pages
             Categories = await _repository.GetAllUnverifiedCategories();
             Posts = await _repository.GetAllUnverifiedPosts();
             Urls = await _urlrepository.GetAllUnverifiedUrls();
+            Comments = _context.Comments.OrderBy(x => x.Id).Where(x => x.IsVerified == false);
         }
        public async Task<IActionResult> OnPostPosty(int id, int iddel)
         {
@@ -73,6 +78,19 @@ namespace FORUM_CZAT.Pages
             if(iddel > 0)
             {
                 await _repository.DeleteCategory(iddel);
+            }
+            return RedirectToPage("/AdminApprovalPage");
+        }
+        public async Task<IActionResult> OnPostComments(int id, int iddel)
+        {
+            _Comments.Id = id;
+            if (id > 0)
+            {
+                await _repository.CheckComment(_Comments);
+            }
+            if (iddel > 0)
+            {
+                await _repository.DeleteComment(iddel);
             }
             return RedirectToPage("/AdminApprovalPage");
         }
